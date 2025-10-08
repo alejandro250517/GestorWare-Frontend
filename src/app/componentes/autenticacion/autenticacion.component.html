@@ -1,9 +1,9 @@
-<section class="container" style= "box-shadow: 8px 8px 100px rgba(62, 64, 65, 0.7);">
+<section>
     <div class="row">
-
-        <div class="card blue-grey darken-1">
+        <div class="contenedor" [@growShrink]>
+                            <div class="logo"></div>
             <article class="col s12 m6 offset-m3 l4 offset-l4" >
-                <div class="logo"></div>
+
                 <h5 class="center-align">Iniciar sesión</h5>
                 <br>
                 <form  (ngSubmit)="login()"  #form="ngForm" >
@@ -27,10 +27,10 @@
         </div>
     </div>
 </section>
-
+  
 <footer class="page-footer center-align" style="position: fixed; bottom: 0; background-color: black ;z-index: 1000; padding: 10px 0; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);">
     <div class="footer-content">
-      © 2025 Desarrollado por Brynware — Todos los derechos reservados
+        © 2025 Desarrollado por Brynware | Todos los derechos reservados
     </div>
 </footer>
 

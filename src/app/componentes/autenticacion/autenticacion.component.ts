@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AutenticacionService } from '../../servicios/autenticacion.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -7,7 +8,18 @@ import Swal from 'sweetalert2';
   selector: 'app-autenticacion',
   standalone: false,
   templateUrl: './autenticacion.component.html',
-  styleUrl: './autenticacion.component.css'
+  styleUrl: './autenticacion.component.css',
+  animations: [
+        trigger('growShrink', [
+      transition(':enter', [
+        style({ transform: 'scale(0)', opacity: 0 }),
+        animate('500ms ease-out', style({ transform: 'scale(1)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('400ms ease-in', style({ transform: 'scale(0)', opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class AutenticacionComponent implements OnInit {
 
