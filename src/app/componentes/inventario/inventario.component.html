@@ -1,26 +1,27 @@
 <nav class="white">
-  <!--  Navbar structure, visible on desktop -->
+  <!-- Navbar estructura escritorio -->
   <div class="nav-wrapper container">
-    <!--  Trigger sidenav  -->
-    <a href="javascript:void(0)" data-target="slide-out" class="sidenav-trigger"
-      ><i class="material-icons">menu</i></a
-    >
-    <!-- Brand Logo -->
+    <!-- Trigger sidenav -->
+    <a href="javascript:void(0)" data-target="slide-out" class="sidenav-trigger">
+      <i class="material-icons">menu</i>
+    </a>
+
+    <!-- Logo -->
     <a class="brand-logo"></a>
+
+    <!-- Menú desktop -->
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a [routerLink]="['/inventario']">Inventario</a></li>
       <li><a (click)="cerrarSesion()">Cerrar sesión</a></li>
     </ul>
   </div>
 
-  <!--  Sidenav structure, visible on tablet and mobile  -->
+  <!-- Menú lateral móvil -->
   <ul id="slide-out" class="sidenav">
     <li>
       <div class="user-view">
         <div class="background">
-          <img
-            class="img-sidenav"
-          />
+          <img class="img-sidenav" />
         </div>
         <br><br><br>
       </div>
@@ -30,7 +31,6 @@
   </ul>
 </nav>
 
-
 <div class="container">
   <div class="card z-depth-2">
     <div class="card-content">
@@ -38,54 +38,45 @@
         Registro de Inventario
       </span>
 
+      <!-- BOTONES SUPERIORES -->
       <div class="row center-align" style="margin-top: 30px;">
         <div class="col s12 m6 l4 offset-l2">
-          <button (click)="descargarExcel()"  class="btn green full-width">
+          <button (click)="descargarExcel()" class="btn green full-width">
             <i class="material-icons left">file_download</i>Exportar inventario
           </button>
         </div>
-              <!-- Botón mostrar/ocultar tabla -->
         <div class="col s12 m6 l4">
           <a class="btn orange lighten-1 full-width" [routerLink]="['/ver-inventario']">
-          <i class="material-icons left">table_chart</i>
-          Ingresos Registrados
-          </a>  
+            <i class="material-icons left">table_chart</i>
+            Ingresos Registrados
+          </a>
         </div>
       </div>
-      <br>
 
       <form (ngSubmit)="registrarInventario()" class="formulario-inventario">
 
         <!-- Regional y Oficina -->
         <div class="row">
-          <div class="row">
-            <div class="col s12">
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">place</i>
-                    <input id="regional" [(ngModel)]="inventario.regional" name="regional" type="text" required>  
-                    <label for="regional">Regional</label>
-                </div>
-              </div>
-            </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">place</i>
+            <input id="regional" [(ngModel)]="inventario.regional" name="regional" type="text" required>
+            <label for="regional">Regional</label>
           </div>
-          <div class="row">
-          <div class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">business</i>
-                  <input id="oficina" [(ngModel)]="inventario.oficina" name="oficina" type="text" required> 
-                  <label for="oficina">Oficina</label>
-              </div>
-            </div>
-          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">business</i>
+            <input id="oficina" [(ngModel)]="inventario.oficina" name="oficina" type="text" required>
+            <label for="oficina">Oficina</label>
           </div>
         </div>
 
         <div class="divider" style="margin-top: 30px;"></div>
 
-        <!-- Selectores -->
-        <h5 class="section-title"><i class="material-icons left">important_devices</i>Selectores</h5>
+        <!-- SELECTORES -->
+        <h5 class="section-title">
+          <i class="material-icons left">important_devices</i>Selectores
+        </h5>
+
         <div *ngFor="let s of inventario.selector; let i = index" class="row">
           <div class="input-field col s12 m4">
             <input [(ngModel)]="s.serial" name="selectorSerial{{i}}" type="text">
@@ -99,20 +90,38 @@
             <input [(ngModel)]="s.ip" name="selectorIp{{i}}" type="text">
             <label>IP</label>
           </div>
-            <div class="col s12 m1 center-align">
-              <button type="button" class="btn-floating red" (click)="eliminarSelector(i)">
-                <i class="material-icons">delete</i>
-              </button>
-            </div>
+
+          <!-- Botón eliminar -->
+          <div class="col s12 center-align" style="margin-top: 10px;">
+            <button
+              type="button"
+              class="btn red waves-effect waves-light"
+              style="width: 50%; max-width: 250px;"
+              (click)="eliminarSelector(i)">
+              <i class="material-icons left">delete</i>Eliminar
+            </button>
+          </div>
         </div>
-        <div class="right-align">
-          <button style="width: 180px;" type="button" class="btn-small blue" (click)="agregarSelector()">+ Selector</button>
+
+        <!-- Botón agregar selector -->
+        <div class="row center-align" style="margin-top: 10px;">
+          <div class="col s12">
+            <button
+              type="button"
+              class="btn blue waves-effect waves-light"
+              style="width: 50%; max-width: 250px;"
+              (click)="agregarSelector()">
+              <i class="material-icons left">add</i>Agregar Selector
+            </button>
+          </div>
         </div>
 
         <div class="divider" style="margin-top: 30px;"></div>
 
-        <!-- Players -->
-        <h5 class="section-title"><i class="material-icons left">smart_display</i>Players</h5>
+        <!-- PLAYERS -->
+        <h5 class="section-title">
+          <i class="material-icons left">smart_display</i>Players
+        </h5>
         <div *ngFor="let p of inventario.player; let i = index" class="row">
           <div class="input-field col s12 m4">
             <input [(ngModel)]="p.serial" name="playerSerial{{i}}" type="text">
@@ -138,21 +147,26 @@
             <input [(ngModel)]="p.sistemaOperativo" name="playerSO{{i}}" type="text">
             <label>Sistema Operativo</label>
           </div>
-          <div class="col s12 m1 center-align">
-              <button type="button" class="btn-floating red" (click)="eliminarPlayer(i)">
-                <i class="material-icons">delete</i>
-              </button>
-            </div>
+          <div class="col s12 center-align">
+            <button type="button" class="btn red" style="width: 50%; max-width: 250px;"
+              (click)="eliminarPlayer(i)">
+              <i class="material-icons left">delete</i>Eliminar
+            </button>
+          </div>
         </div>
-        <div class="right-align">
-          <button style="width: 180px;" type="button" class="btn-small blue" (click)="agregarPlayer()">+ Player</button>
+        <div class="row center-align">
+          <button type="button" class="btn blue" style="width: 50%; max-width: 250px;"
+            (click)="agregarPlayer()">
+            <i class="material-icons left">add</i>Agregar Player
+          </button>
         </div>
-        <br>
 
         <div class="divider" style="margin-top: 30px;"></div>
 
-        <!-- Pantallas -->
-        <h5 class="section-title"><i class="material-icons left">tv</i>Pantallas</h5>
+        <!-- PANTALLAS -->
+        <h5 class="section-title">
+          <i class="material-icons left">tv</i>Pantallas
+        </h5>
         <div *ngFor="let p of inventario.pantalla; let i = index" class="row">
           <div class="input-field col s12 m4">
             <input [(ngModel)]="p.marca" name="pantallaMarca{{i}}" type="text">
@@ -166,88 +180,76 @@
             <input [(ngModel)]="p.tamano" name="pantallaTamano{{i}}" type="text">
             <label>Tamaño</label>
           </div>
-          <div class="col s12 m1 center-align">
-              <button type="button" class="btn-floating red" (click)="eliminarPantalla(i)">
-                <i class="material-icons">delete</i>
-              </button>
-            </div>
+          <div class="col s12 center-align">
+            <button type="button" class="btn red" style="width: 50%; max-width: 250px;"
+              (click)="eliminarPantalla(i)">
+              <i class="material-icons left">delete</i>Eliminar
+            </button>
+          </div>
         </div>
-        <div class="right-align">
-          <button style="width: 180px;" type="button" class="btn-small blue" (click)="agregarPantalla()">+ Pantalla</button>
+        <div class="row center-align">
+          <button type="button" class="btn blue" style="width: 50%; max-width: 250px;"
+            (click)="agregarPantalla()">
+            <i class="material-icons left">add</i>Agregar Pantalla
+          </button>
         </div>
 
         <div class="divider" style="margin-top: 30px;"></div>
 
-         
-        <!-- Amplificadores -->
+        <!-- AMPLIFICADORES -->
         <h5 class="section-title"><i class="material-icons left">surround_sound</i>Amplificadores</h5>
         <div *ngFor="let a of inventario.amplificador; let i = index" class="row">
           <div class="input-field col s12 m6">
             <input [(ngModel)]="a.serial" name="amplificadorSerial{{i}}" type="text">
             <label>Serial</label>
           </div>
-          <div class="col s12 m1 center-align">
-              <button type="button" class="btn-floating red" (click)="eliminarAmplificador(i)">
-                <i class="material-icons">delete</i>
-              </button>
-            </div>
+          <div class="col s12 center-align">
+            <button type="button" class="btn red" style="width: 50%; max-width: 250px;"
+              (click)="eliminarAmplificador(i)">
+              <i class="material-icons left">delete</i>Eliminar
+            </button>
+          </div>
         </div>
-       <div class="right-align">
-          <button style="width: 180px;" type="button" class="btn-small blue" (click)="agregarAmplificador()">+ Amplificador</button>
+        <div class="row center-align">
+          <button type="button" class="btn blue" style="width: 50%; max-width: 250px;"
+            (click)="agregarAmplificador()">
+            <i class="material-icons left">add</i>Agregar Amplificador
+          </button>
         </div>
 
         <div class="divider" style="margin-top: 30px;"></div>
 
-        <!-- Parlantes -->
+        <!-- PARLANTES -->
         <h5 class="section-title"><i class="material-icons left">speaker</i>Parlantes</h5>
         <div *ngFor="let p of inventario.parlante; let i = index" class="row">
           <div class="input-field col s12 m6">
             <input [(ngModel)]="p.serial" name="parlanteSerial{{i}}" type="text">
             <label>Serial</label>
           </div>
-          <div class="col s12 m1 center-align">
-              <button type="button" class="btn-floating red" (click)="eliminarParlante(i)">
-                <i class="material-icons">delete</i>
-              </button>
-            </div>
+          <div class="col s12 center-align">
+            <button type="button" class="btn red" style="width: 50%; max-width: 250px;"
+              (click)="eliminarParlante(i)">
+              <i class="material-icons left">delete</i>Eliminar
+            </button>
+          </div>
         </div>
-        <div class="right-align">
-          <button style="width: 180px;" type="button" class="btn-small blue" (click)="agregarParlante()">+ Parlante</button>
+        <div class="row center-align">
+          <button type="button" class="btn blue" style="width: 50%; max-width: 250px;"
+            (click)="agregarParlante()">
+            <i class="material-icons left">add</i>Agregar Parlante
+          </button>
         </div>
 
         <div class="divider" style="margin-top: 30px;"></div>
 
-        <!-- Botón registrar -->
+        <!-- BOTÓN REGISTRAR -->
         <div class="row center-align" style="margin-top: 30px;">
-          <button type="submit" class="btn green">
+          <button type="submit" class="btn green" style="width: 50%; max-width: 250px;">
             <i class="material-icons left">check_circle</i>Registrar Inventario
           </button>
         </div>
+
       </form>
-
-      <!-- Tabla de ingresos registrados -->
-      <div *ngIf="mostrarTabla" class="card-panel grey lighten-5 z-depth-1" style="margin-top: 20px;">
-        <h5 class="blue-text text-darken-2 center-align">Ingresos Registrados</h5>
-        <table class="highlight responsive-table">
-          <thead class="blue lighten-4">
-            <tr>
-              <th>#</th>
-              <th>Regional</th>
-              <th>Oficina</th>
-              <th>Fecha</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ingreso of ingresosRegistrados; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ ingreso.regional }}</td>
-              <td>{{ ingreso.oficina }}</td>
-              <td>{{ ingreso.fecha | date: 'short' }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
     </div>
   </div>
 </div>
