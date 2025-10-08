@@ -1,0 +1,334 @@
+<nav class="white">
+  <!--  Navbar structure, visible on desktop -->
+  <div class="nav-wrapper container">
+    <!--  Trigger sidenav  -->
+    <a href="javascript:void(0)" data-target="slide-out" class="sidenav-trigger"
+      ><i class="material-icons">menu</i></a
+    >
+    <!-- Brand Logo -->
+    <a class="brand-logo"></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a [routerLink]="['/inventario']">Inventario</a></li>
+      <li><a (click)="cerrarSesion()">Cerrar sesión</a></li>
+    </ul>
+  </div>
+
+  <!--  Sidenav structure, visible on tablet and mobile  -->
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img class="img-sidenav"
+          />
+        </div>
+        <br><br><br>
+      </div>
+    </li>
+    <li><a class="waves-effect" [routerLink]="['/inventario']">Inventario</a></li>
+    <li><a class="waves-effect" (click)="cerrarSesion()">Cerrar sesión</a></li>
+  </ul>
+
+</nav>
+
+
+
+<div class="container">
+  <h4 class="center-align blue-text text-darken-2">Inventarios Registrados</h4>
+
+  <div *ngIf="ingresosRegistrados.length === 0" class="card-panel yellow lighten-4">
+    <span class="black-text">Cargando registros</span>
+  </div>
+
+  <!-- Modal de Edición -->
+  <div id="modalEditar" class="modal">
+    <div class="modal-content">
+      <h5 class="blue-text">✏️ Editar Inventario</h5>
+
+      <div class="input-field">
+        <input type="text" [(ngModel)]="inventarioEditado.regional" id="regional">
+        <label for="regional" class="active">Regional</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" [(ngModel)]="inventarioEditado.oficina" id="oficina">
+        <label for="oficina" class="active">Oficina</label>
+      </div>
+
+      
+      <!-- Selectores -->
+      <div *ngIf="inventarioEditado.selector?.length">
+        <h6 class="indigo-text">🎛 Selectores</h6>
+        <div *ngFor="let s of inventarioEditado.selector; let i = index" class="row">
+          <div class="input-field col s4">
+            <input type="text" name="serial{{i}}" [(ngModel)]="s.serial" placeholder="Serial">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="selectorMac{{i}}" [(ngModel)]="s.mac" placeholder="MAC">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="selectorIp{{i}}" [(ngModel)]="s.ip" placeholder="IP">
+          </div>
+        </div>
+      </div>
+
+      <!-- Encuestadores -->
+      <div *ngIf="inventarioEditado.encuestador?.length">
+        <h6 class="indigo-text">🎛 Selector de encuestas</h6>
+        <div *ngFor="let e of inventarioEditado.encuestador; let i = index" class="row">
+          <div class="input-field col s4">
+            <input type="text" name="serial{{i}}" [(ngModel)]="e.serial" placeholder="Serial">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="encuestadorMac{{i}}" [(ngModel)]="e.mac" placeholder="MAC">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="encuestadorIp{{i}}" [(ngModel)]="e.ip" placeholder="IP">
+          </div>
+        </div>
+      </div>
+
+      <!-- Players -->
+      <div *ngIf="inventarioEditado.player?.length">
+        <h6 class="indigo-text">🎛 Players</h6>
+        <div *ngFor="let p of inventarioEditado.player; let i = index" class="row">
+          <div class="input-field col s4">
+            <input type="text" name="serial{{i}}" [(ngModel)]="p.serial" placeholder="Serial">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="mac{{i}}" [(ngModel)]="p.mac" placeholder="MAC">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="ip{{i}}" [(ngModel)]="p.ip" placeholder="IP">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="marca{{i}}" [(ngModel)]="p.marca" placeholder="Marca">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="modelo{{i}}" [(ngModel)]="p.modelo" placeholder="Modelo">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="sistemaOperativo{{i}}" [(ngModel)]="p.sistemaOperativo" placeholder="S.O">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pantallas -->
+      <div *ngIf="inventarioEditado.pantalla?.length">
+        <h6 class="indigo-text">🎛 Pantallas</h6>
+        <div *ngFor="let pan of inventarioEditado.pantalla; let i = index" class="row">
+          <div class="input-field col s4">
+            <input type="text" name="marca{{i}}" [(ngModel)]="pan.marca" placeholder="Marca">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="serial{{i}}" [(ngModel)]="pan.serial" placeholder="Serial">
+          </div>
+          <div class="input-field col s4">
+            <input type="text" name="tamano{{i}}" [(ngModel)]="pan.tamano" placeholder="Tamaño">
+          </div>
+        </div>
+      </div>
+
+      <!-- Amplificadores -->
+      <div *ngIf="inventarioEditado.amplificador?.length">
+        <h6 class="indigo-text">🎛 Amplificadores</h6>
+        <div *ngFor="let a of inventarioEditado.amplificador; let i = index" class="row">
+          <div class="input-field col s4">
+            <input type="text" name="serial{{i}}" [(ngModel)]="a.serial" placeholder="Serial">
+          </div>
+        </div>
+      </div>
+
+      <!-- Parlantes -->
+      <div *ngIf="inventarioEditado.parlante?.length">
+        <h6 class="indigo-text">🎛 Amplificadores</h6>
+        <div *ngFor="let par of inventarioEditado.parlante; let i = index" class="row">
+          <div class="input-field col s4">
+            <input type="text" name="serial{{i}}" [(ngModel)]="par.serial" placeholder="Serial">
+          </div>
+        </div>
+      </div>
+
+
+      
+    </div>
+
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <a class="waves-effect waves-light btn blue" (click)="guardarCambios()">
+        <i class="material-icons left">save</i>Guardar
+      </a>
+    </div>
+  </div>
+
+  <!-- Lista de Inventarios -->
+  <div *ngFor="let inv of ingresosRegistrados; let i = index" class="card z-depth-2" style="margin-bottom: 30px;">
+    <div class="card-content">
+      <span class="card-title blue-text text-darken-3">
+        Inventario #{{ i + 1 }}
+      </span>
+
+      <div class="row">
+        <div class="col s12 m6">
+          <p><strong>Regional:</strong> {{ inv.regional }}</p>
+        </div>
+
+        <div class="col s12 m6">
+          <p><strong>Oficina:</strong> {{ inv.oficina }}</p>
+        </div>
+      </div>
+
+      <!-- Selectores -->
+      <div *ngIf="inv.selector?.length" class="section">
+        <h6 class="indigo-text text-darken-2">Selector de turnos</h6>
+        <div class="responsive-table">
+          <table class="responsive-table centered striped">
+            <thead>
+              <tr>
+                <th>Serial</th>
+                <th>MAC</th>
+                <th>IP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of inv.selector">
+                <td>{{ s.serial }}</td>
+                <td>{{ s.mac }}</td>
+                <td>{{ s.ip }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+            <!-- Encuestadores -->
+      <div *ngIf="inv.encuestador?.length" class="section">
+        <h6 class="indigo-text text-darken-2">Selector de encuestas</h6>
+        <div class="responsive-table">
+          <table class="responsive-table centered striped">
+            <thead>
+              <tr>
+                <th>Serial</th>
+                <th>MAC</th>
+                <th>IP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of inv.encuestador">
+                <td>{{ e.serial }}</td>
+                <td>{{ e.mac }}</td>
+                <td>{{ e.ip }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Players -->
+      <div *ngIf="inv.player?.length" class="section">
+        <h6 class="indigo-text text-darken-2">Players</h6>
+        <div class="responsive-table">
+          <table class="responsive-table centered striped">
+            <thead>
+              <tr>
+                <th>Serial</th>
+                <th>MAC</th>
+                <th>IP</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>S.O</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of inv.player">
+                <td>{{ p.serial }}</td>
+                <td>{{ p.mac }}</td>
+                <td>{{ p.ip }}</td>
+                <td>{{ p.marca }}</td>
+                <td>{{ p.modelo }}</td>
+                <td>{{ p.sistemaOperativo }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pantallas -->
+      <div *ngIf="inv.pantalla?.length" class="section">
+        <h6 class="indigo-text text-darken-2">Pantallas</h6>
+        <div class="responsive-table">
+          <table class="responsive-table striped">
+            <thead>
+              <tr>
+                <th>Marca</th>
+                <th>Serial</th>
+                <th>Tamaño</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of inv.pantalla">
+                <td>{{ p.marca }}</td>
+                <td>{{ p.serial }}</td>
+                <td>{{ p.tamano }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Amplificadores -->
+      <div *ngIf="inv.amplificador?.length" class="section">
+        <h6 class="indigo-text text-darken-2">Amplificadores</h6>
+        <div class="responsive-table striped">
+          <table>
+            <thead>
+              <tr>
+                <th>Serial</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let a of inv.amplificador">
+                <td>{{ a.serial }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Parlantes -->
+      <div *ngIf="inv.parlante?.length" class="section">
+        <h6 class="indigo-text text-darken-2">Parlantes</h6>
+        <div class="responsive-table striped">
+          <table>
+            <thead>
+              <tr>
+                <th>Serial</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of inv.parlante">
+                <td>{{ p.serial }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-action center-align">
+      <a class="btn-small blue lighten-1 waves-effect waves-light modal-trigger"
+         data-target="modalEditar"
+          (click)="abrirModalEditar(inv)">
+        <i class="material-icons left">edit</i>Editar
+      </a>
+      <a class="btn-small red lighten-1 waves-effect waves-light" (click)="eliminarInventario(inv._id)">
+        <i class="material-icons left" >delete</i>Eliminar
+      </a>
+    </div>
+  </div>
+
+  <div class="center-align" style="margin-top: 30px;">
+    <a class="btn orange lighten-1 waves-effect waves-light" [routerLink]="['/inventario']">
+      <i class="material-icons left">arrow_back</i>Volver al formulario
+    </a>
+  </div>
+</div>
