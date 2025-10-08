@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://gestorware.onrender.com/Gestorware'
+    apiUrl: 'https://Gestorware.onrender.com/Gestorware'
 };
