@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'inventario', component: InventarioComponent, canActivate: [autenticacionGuard] }, 
   { path: 'ver-inventario', component: VerInventarioComponent, canActivate: [autenticacionGuard]},
 
-  { path: '**', redirectTo: '/iniciar-sesion', pathMatch: 'full' },
+  { path: '**', redirectTo: '/iniciar-sesion'}
 
 
 ];
