@@ -89,7 +89,7 @@ export class AutenticacionComponent implements OnInit { // Clase del componente
       Swal.fire({
         icon: 'warning',
         title: 'Campo obligatorio',
-        text: 'Debes diligenciar la contrasena antes de iniciar sesión'
+        text: 'Debes diligenciar la contraseña antes de iniciar sesión'
       });
       return; // Detiene la ejecución del método
     }
