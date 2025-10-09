@@ -64,7 +64,12 @@ export class AutenticacionComponent implements OnInit { // Clase del componente
   // Método del ciclo de vida: se ejecuta al inicializar el componente
   // ------------------------------------------------------------
   ngOnInit(): void {
-    // Aquí podrían colocarse tareas de inicialización, como limpiar formularios o verificar sesión activa
+  }
+
+  //Limpiar campos de correo y contraseña
+  limpiarCampos() {
+    this.correo = ''; // Limpia el campo de correo
+    this.contrasena = ''; // Limpia el campo de contraseña
   }
 
   // ------------------------------------------------------------
@@ -145,7 +150,6 @@ export class AutenticacionComponent implements OnInit { // Clase del componente
           }
         });
       },
-
       // Caso de error (credenciales inválidas o error del servidor)
       error: (error: any) => {
         Swal.fire({
@@ -154,6 +158,7 @@ export class AutenticacionComponent implements OnInit { // Clase del componente
           text: error.error.message || 'Credenciales inválidas',
           confirmButtonColor: '#3085d6'
         });
+        this.limpiarCampos();
       }
     });
   }
