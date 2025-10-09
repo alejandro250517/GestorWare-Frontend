@@ -37,6 +37,12 @@ import Swal from 'sweetalert2'; // Librería para mostrar alertas elegantes
       transition(':leave', [
         animate('400ms ease-in', style({ transform: 'scale(0)', opacity: 0 }))
       ])
+    ]),
+    trigger('efectoPie',[
+      transition(':enter', [
+        style({ transform: 'translateX(100%)', opacity: 0 }),
+        animate('500ms ease-out', style({ transform: 'translateX(0)', opacity: 1 }))             // Estado inicial (invisible y pequeño)
+      ])
     ])
   ]
 })

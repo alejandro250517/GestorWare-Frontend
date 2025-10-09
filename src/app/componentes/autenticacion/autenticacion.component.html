@@ -1,39 +1,108 @@
+<!-- ==========================================================
+     SECCIÓN PRINCIPAL DE AUTENTICACIÓN (LOGIN)
+     ========================================================== -->
 <section>
     <div class="row">
+        <!-- Contenedor principal que agrupa el formulario y logo -->
+        <!-- Se aplica la animación definida en el componente con [@growShrink] -->
         <div class="contenedor" [@growShrink]>
-                            <div class="logo"></div>
-            <article class="col s12 m6 offset-m3 l4 offset-l4" >
 
+            <!-- ======================================================
+                 LOGO DEL SISTEMA (puede ser imagen o fondo en CSS)
+                 ====================================================== -->
+            <div class="logo"></div>
+
+            <!-- ======================================================
+                 ESTRUCTURA DE COLUMNA CENTRALIZADA CON MATERIALIZECSS
+                 - col s12 → ocupa todo el ancho en pantallas pequeñas
+                 - m6 offset-m3 → 6 columnas centradas en pantallas medianas
+                 - l4 offset-l4 → 4 columnas centradas en pantallas grandes
+                 ====================================================== -->
+            <article class="col s12 m6 offset-m3 l4 offset-l4">
+
+                <!-- Título del formulario -->
                 <h5 class="center-align">Iniciar sesión</h5>
                 <br>
-                <form  (ngSubmit)="login()"  #form="ngForm" >
+
+                <!-- ======================================================
+                     FORMULARIO DE AUTENTICACIÓN
+                     - (ngSubmit)="login()" → ejecuta el método login() al enviar el formulario
+                     - #form="ngForm" → referencia local del formulario para controlarlo desde TS
+                     ====================================================== -->
+                <form (ngSubmit)="login()" #form="ngForm">
+
+                    <!-- ======================================================
+                         CAMPO DE CORREO
+                         - MaterializeCSS usa 'input-field' para formato visual
+                         - 'prefix' coloca un ícono a la izquierda
+                         - [(ngModel)]="correo" → vincula el valor a la variable 'correo' del componente
+                         - required → marca el campo como obligatorio
+                         ====================================================== -->
                     <div class="input-field">
                         <i class="material-icons prefix">perm_identity</i>
                         <label for="correo">Correo</label>
-                        <input id="correo" type="email" name="correo" [(ngModel)]="correo" required >
+                        <input 
+                            id="correo" 
+                            type="email" 
+                            name="correo" 
+                            [(ngModel)]="correo" 
+                            required>
                     </div>  
                     <br>
+
+                    <!-- ======================================================
+                         CAMPO DE CONTRASEÑA
+                         - Usa ícono 'lock' para identificación visual
+                         - [(ngModel)]="contrasena" → vincula el valor a la variable del componente
+                         - required → campo obligatorio
+                         ====================================================== -->
                     <div class="input-field">
                         <i class="material-icons prefix">lock</i>
                         <label for="contrasena">Contraseña</label>
-                        <input id="contrasena" type="password" name="contrasena" [(ngModel)]="contrasena" required  >
+                        <input 
+                            id="contrasena" 
+                            type="password" 
+                            name="contrasena" 
+                            [(ngModel)]="contrasena" 
+                            required>
                     </div>
                     <br>
+
+                    <!-- ======================================================
+                         BOTÓN DE ENVÍO
+                         - type="submit" → ejecuta (ngSubmit) del formulario
+                         - Clases 'waves-effect' y 'waves-light' → efecto visual de Materialize
+                         - btn → estilo de botón principal
+                         ====================================================== -->
                     <p class="center-align">
-                        <button class="waves-effect waves-light btn" type="submit">Ingresar</button>
+                        <button 
+                            class="waves waves-light btn" 
+                            type="submit">
+                            Ingresar
+                        </button>
                     </p>
                 </form>
             </article>
         </div>
     </div>
 </section>
-  
-<footer class="page-footer center-align" style="position: fixed; bottom: 0; background-color: black ;z-index: 1000; padding: 10px 0; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);">
+
+<!-- ==========================================================
+     PIE DE PÁGINA FIJO
+     - Posicionado al fondo con estilo fijo
+     - Fondo negro con sombra superior
+     - Contiene los derechos de autor
+     ========================================================== -->
+<footer class="page-footer center-align" [@efectoPie] 
+        style="
+          position: fixed; 
+          bottom: 0; 
+          background-color: black;
+          z-index: 1000; 
+          padding: 10px 0; 
+          box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        ">
     <div class="footer-content">
         © 2025 Desarrollado por Brynware | Todos los derechos reservados
     </div>
 </footer>
-
-
-
-
