@@ -203,11 +203,25 @@ export class InventarioComponent implements OnInit, AfterViewInit {
       this.inventarioService.servicioRegistrarInventario(this.inventario).subscribe({
       next: res => {
         Swal.fire('Registrado', 'Inventario registrado correctamente', 'success');
+        this.limpiarCampos();
       },
       error: err => console.error('Error al registrar:', err)
     });
 
 }
+
+  limpiarCampos() {
+    this.inventario = {
+      regional: '',
+      oficina: '',
+      selector: [],
+      encuestador: [],
+      player: [],
+      pantalla: [],
+      amplificador: [],
+      parlante: []
+    };
+  }
 
 
 
