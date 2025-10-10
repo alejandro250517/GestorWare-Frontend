@@ -69,7 +69,6 @@
             <input
               id="regional"
               [(ngModel)]="inventario.regional"
-              [ngClass]="{ 'campo-error': campoRegionalInvalido }"
               name="regional"
               type="text"
             />
@@ -133,9 +132,62 @@
           <div class="col s12">
             <button
               type="button"
-              class="btn blue waves-effect waves-light"
+              class="btn tooltipped" data-position="right" data-tooltip="Agregar selector"
               style="width: 30%; max-width: 150px"
               (click)="agregarSelector()"
+            >
+              <i class="material-icons center">add_circle</i>
+            </button>
+          </div>
+        </div>
+
+
+        <!-- ENCUESTADORES -->
+        <h5 class="section-title">
+          <i class="material-icons center">important_devices</i>Calificador
+        </h5>
+
+        <div *ngFor="let e of inventario.encuestador; let i = index" class="row">
+          <div class="input-field col s12 m4">
+            <input
+              [(ngModel)]="e.serial"
+              name="encuestadorSerial{{ i }}"
+              type="text"
+            />
+            <label>Serial</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input [(ngModel)]="e.mac" name="encuestadorMac{{ i }}" type="text" />
+            <label>MAC</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input [(ngModel)]="e.ip" name="encuestadorIp{{ i }}" type="text" />
+            <label>IP</label>
+          </div>
+
+          <!-- Botón eliminar -->
+          <div class="row center-align" style="margin-top: 10px">
+            <div class="col s12">
+              <button
+                type="button"
+                class="btn red waves-effect waves-light"
+                style="width: 30%; max-width: 150px"
+                (click)="eliminarEncuestador(i)"
+              >
+                <i class="material-icons center">delete_sweep</i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón agregar Encuestador -->
+        <div class="row center-align" style="margin-top: 10px">
+          <div class="col s12">
+            <button
+              type="button"
+              class="btn tooltipped" data-position="right" data-tooltip="Agregar encuestador"
+              style="width: 30%; max-width: 150px"
+              (click)="agregarEncuestador()"
             >
               <i class="material-icons center">add_circle</i>
             </button>
@@ -203,7 +255,7 @@
         <div class="row center-align">
           <button
             type="button"
-            class="btn blue"
+            class="btn tooltipped" data-position="right" data-tooltip="Agregar player"
             style="width: 30%; max-width: 150px"
             (click)="agregarPlayer()"
           >
@@ -256,7 +308,7 @@
         <div class="row center-align">
           <button
             type="button"
-            class="btn blue"
+            class="btn tooltipped" data-position="right" data-tooltip="Agregar pantalla"
             style="width: 30%; max-width: 150px"
             (click)="agregarPantalla()"
           >
@@ -296,7 +348,7 @@
         <div class="row center-align">
           <button
             type="button"
-            class="btn blue"
+            class="btn tooltipped" data-position="right" data-tooltip="Agregar amplificador"
             style="width: 30%; max-width: 150px"
             (click)="agregarAmplificador()"
           >
@@ -333,7 +385,7 @@
         <div class="row center-align">
           <button
             type="button"
-            class="btn blue"
+            class="btn tooltipped" data-position="right" data-tooltip="Agregar parlante"
             style="width: 30%; max-width: 150px"
             (click)="agregarParlante()"
           >

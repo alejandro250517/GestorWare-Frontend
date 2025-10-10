@@ -4,6 +4,12 @@ export interface Selector {
   ip: string;
 }
 
+export interface Encuestador {
+  serial: string;
+  mac: string;
+  ip: string;
+}
+
 export interface Player {
   serial: string;
   mac: string;
@@ -32,6 +38,7 @@ export interface Inventario {
   regional: string;
   oficina: string;
   selector: Selector[];
+  encuestador: Encuestador[];
   player: Player[];
   pantalla: Pantalla[];
   amplificador: Amplificador[];

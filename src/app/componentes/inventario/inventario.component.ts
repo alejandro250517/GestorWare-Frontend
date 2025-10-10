@@ -27,6 +27,7 @@ export class InventarioComponent implements OnInit, AfterViewInit {
     regional: '',
     oficina: '',
     selector: [],
+    encuestador: [],
     player: [],
     pantalla: [],
     amplificador: [],
@@ -42,6 +43,7 @@ export class InventarioComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 
   }
 
@@ -54,6 +56,14 @@ export class InventarioComponent implements OnInit, AfterViewInit {
 
   eliminarSelector(index: number) {
     this.inventario.selector.splice(index, 1);
+  }
+
+  agregarEncuestador() {
+    this.inventario.encuestador.push({ serial: '', mac: '', ip: '' });
+  }
+
+  eliminarEncuestador(index: number) {
+    this.inventario.encuestador.splice(index, 1);
   }
 
   agregarPlayer() {
@@ -124,8 +134,9 @@ export class InventarioComponent implements OnInit, AfterViewInit {
             title: 'Campos incompletos',
             text: `Faltan datos en el Selector ${i + 1}. Asegúrate de llenar Serial, MAC e IP.`
           })
+        return;  
       }
-      return; 
+ 
     }
 
     for(let i = 0; i < this.inventario.player.length; i++) {
@@ -142,8 +153,50 @@ export class InventarioComponent implements OnInit, AfterViewInit {
             title: 'Campos incompletos',
             text: `Faltan datos en el Player ${i + 1}. Asegúrate de llenar Serial, MAC, IP, Marca, Modelo y S.O.`
           })
+            return;
       }
-      return; 
+
+    }
+
+    for (let i = 0; i < this.inventario.pantalla.length; i++) {
+      const pl = this.inventario.pantalla[i];
+
+      if(!pl.marca || pl.marca.trim() === '' ||
+         !pl.serial || pl.serial.trim() === '' ||
+         !pl.tamano || pl.tamano.trim() === '') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Campos incompletos',
+            text: `Faltan datos en la Pantalla ${i + 1}. Asegúrate de llenar Marca, Serial y Tamaño.`
+          })
+            return;
+      }
+    }
+
+    for (let i = 0; i < this.inventario.amplificador.length; i++) {
+      const am = this.inventario.amplificador[i];
+
+      if(!am.serial || am.serial.trim() === '') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Campos incompletos',
+            text: `Faltan datos en el Amplificador ${i + 1}. Asegúrate de llenar Serial.`
+          })
+            return;
+      }
+    }
+
+    for (let i = 0; i < this.inventario.parlante.length; i++) {
+      const pa = this.inventario.parlante[i];
+
+      if(!pa.serial || pa.serial.trim() === '') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Campos incompletos',
+            text: `Faltan datos en el Parlante ${i + 1}. Asegúrate de llenar Serial.`
+          })
+            return;
+      }
     }
 
 
