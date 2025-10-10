@@ -53,6 +53,19 @@ label {
   margin-bottom: 15px;
 }
 
+.campo-error{
+  border-bottom: 2px solid rgb(177, 87, 87) !important;
+  box-shadow: 0 1px 0 0 red !important;
+}
+
+
+
+
+
+
+
+
+
 
 
 

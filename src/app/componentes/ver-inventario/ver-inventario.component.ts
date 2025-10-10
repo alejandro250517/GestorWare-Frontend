@@ -102,14 +102,15 @@ export class VerInventarioComponent implements OnInit, AfterViewInit {
         this.inventarioService.servicioEliminarInventario(id).subscribe({
           next: () => {
             Swal.fire('¡Eliminado!', 'El usuario ha sido eliminado.', 'success');
+            this.obtenerIngresos();
           },
           error: (err) => {
             Swal.fire('Error', err.error.message || 'No se pudo eliminar el usuario', 'error');
           }
-          
         });
-        this.obtenerIngresos();
+
       }
+
     });
   }
 
