@@ -18,24 +18,25 @@
     <li>
       <div class="user-view">
         <div class="background">
-          <img class="img-sidenav"
-          />
+          <img class="img-sidenav" />
         </div>
-        <br><br><br>
+        <br /><br /><br />
       </div>
     </li>
-    <li><a class="waves-effect" [routerLink]="['/inventario']">Inventario</a></li>
+    <li>
+      <a class="waves-effect" [routerLink]="['/inventario']">Inventario</a>
+    </li>
     <li><a class="waves-effect" (click)="cerrarSesion()">Cerrar sesión</a></li>
   </ul>
-
 </nav>
-
-
 
 <div class="container">
   <h4 class="center-align blue-text text-darken-2">Inventarios Registrados</h4>
 
-  <div *ngIf="ingresosRegistrados.length === 0" class="card-panel yellow lighten-4">
+  <div
+    *ngIf="ingresosRegistrados.length === 0"
+    class="card-panel yellow lighten-4"
+  >
     <span class="black-text">Cargando registros</span>
   </div>
 
@@ -45,28 +46,54 @@
       <h5 class="blue-text">✏️ Editar Inventario</h5>
 
       <div class="input-field">
-        <input type="text" [(ngModel)]="inventarioEditado.regional" id="regional">
+        <input
+          type="text"
+          [(ngModel)]="inventarioEditado.regional"
+          id="regional"
+        />
         <label for="regional" class="active">Regional</label>
       </div>
 
       <div class="input-field">
-        <input type="text" [(ngModel)]="inventarioEditado.oficina" id="oficina">
+        <input
+          type="text"
+          [(ngModel)]="inventarioEditado.oficina"
+          id="oficina"
+        />
         <label for="oficina" class="active">Oficina</label>
       </div>
 
-      
       <!-- Selectores -->
       <div *ngIf="inventarioEditado.selector?.length">
         <h6 class="indigo-text">🎛 Selectores</h6>
-        <div *ngFor="let s of inventarioEditado.selector; let i = index" class="row">
+        <div
+          class="selectorUp"
+          *ngFor="let s of inventarioEditado.selector; let i = index"
+          class="row"
+        >
           <div class="input-field col s4">
-            <input type="text" name="serial{{i}}" [(ngModel)]="s.serial" placeholder="Serial">
+            <input
+              type="text"
+              name="serial{{ i }}"
+              [(ngModel)]="s.serial"
+              placeholder="Serial"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="selectorMac{{i}}" [(ngModel)]="s.mac" placeholder="MAC">
+            <input
+              type="text"
+              name="selectorMac{{ i }}"
+              [(ngModel)]="s.mac"
+              placeholder="MAC"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="selectorIp{{i}}" [(ngModel)]="s.ip" placeholder="IP">
+            <input
+              type="text"
+              name="selectorIp{{ i }}"
+              [(ngModel)]="s.ip"
+              placeholder="IP"
+            />
           </div>
         </div>
       </div>
@@ -74,15 +101,33 @@
       <!-- Encuestadores -->
       <div *ngIf="inventarioEditado.encuestador?.length">
         <h6 class="indigo-text">🎛 Selector de encuestas</h6>
-        <div *ngFor="let e of inventarioEditado.encuestador; let i = index" class="row">
+        <div
+          *ngFor="let e of inventarioEditado.encuestador; let i = index"
+          class="row"
+        >
           <div class="input-field col s4">
-            <input type="text" name="serial{{i}}" [(ngModel)]="e.serial" placeholder="Serial">
+            <input
+              type="text"
+              name="serial{{ i }}"
+              [(ngModel)]="e.serial"
+              placeholder="Serial"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="encuestadorMac{{i}}" [(ngModel)]="e.mac" placeholder="MAC">
+            <input
+              type="text"
+              name="encuestadorMac{{ i }}"
+              [(ngModel)]="e.mac"
+              placeholder="MAC"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="encuestadorIp{{i}}" [(ngModel)]="e.ip" placeholder="IP">
+            <input
+              type="text"
+              name="encuestadorIp{{ i }}"
+              [(ngModel)]="e.ip"
+              placeholder="IP"
+            />
           </div>
         </div>
       </div>
@@ -90,24 +135,57 @@
       <!-- Players -->
       <div *ngIf="inventarioEditado.player?.length">
         <h6 class="indigo-text">🎛 Players</h6>
-        <div *ngFor="let p of inventarioEditado.player; let i = index" class="row">
+        <div
+          *ngFor="let p of inventarioEditado.player; let i = index"
+          class="row"
+        >
           <div class="input-field col s4">
-            <input type="text" name="serial{{i}}" [(ngModel)]="p.serial" placeholder="Serial">
+            <input
+              type="text"
+              name="serial{{ i }}"
+              [(ngModel)]="p.serial"
+              placeholder="Serial"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="mac{{i}}" [(ngModel)]="p.mac" placeholder="MAC">
+            <input
+              type="text"
+              name="mac{{ i }}"
+              [(ngModel)]="p.mac"
+              placeholder="MAC"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="ip{{i}}" [(ngModel)]="p.ip" placeholder="IP">
+            <input
+              type="text"
+              name="ip{{ i }}"
+              [(ngModel)]="p.ip"
+              placeholder="IP"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="marca{{i}}" [(ngModel)]="p.marca" placeholder="Marca">
+            <input
+              type="text"
+              name="marca{{ i }}"
+              [(ngModel)]="p.marca"
+              placeholder="Marca"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="modelo{{i}}" [(ngModel)]="p.modelo" placeholder="Modelo">
+            <input
+              type="text"
+              name="modelo{{ i }}"
+              [(ngModel)]="p.modelo"
+              placeholder="Modelo"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="sistemaOperativo{{i}}" [(ngModel)]="p.sistemaOperativo" placeholder="S.O">
+            <input
+              type="text"
+              name="sistemaOperativo{{ i }}"
+              [(ngModel)]="p.sistemaOperativo"
+              placeholder="S.O"
+            />
           </div>
         </div>
       </div>
@@ -115,15 +193,33 @@
       <!-- Pantallas -->
       <div *ngIf="inventarioEditado.pantalla?.length">
         <h6 class="indigo-text">🎛 Pantallas</h6>
-        <div *ngFor="let pan of inventarioEditado.pantalla; let i = index" class="row">
+        <div
+          *ngFor="let pan of inventarioEditado.pantalla; let i = index"
+          class="row"
+        >
           <div class="input-field col s4">
-            <input type="text" name="marca{{i}}" [(ngModel)]="pan.marca" placeholder="Marca">
+            <input
+              type="text"
+              name="marca{{ i }}"
+              [(ngModel)]="pan.marca"
+              placeholder="Marca"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="serial{{i}}" [(ngModel)]="pan.serial" placeholder="Serial">
+            <input
+              type="text"
+              name="serial{{ i }}"
+              [(ngModel)]="pan.serial"
+              placeholder="Serial"
+            />
           </div>
           <div class="input-field col s4">
-            <input type="text" name="tamano{{i}}" [(ngModel)]="pan.tamano" placeholder="Tamaño">
+            <input
+              type="text"
+              name="tamano{{ i }}"
+              [(ngModel)]="pan.tamano"
+              placeholder="Tamaño"
+            />
           </div>
         </div>
       </div>
@@ -131,9 +227,17 @@
       <!-- Amplificadores -->
       <div *ngIf="inventarioEditado.amplificador?.length">
         <h6 class="indigo-text">🎛 Amplificadores</h6>
-        <div *ngFor="let a of inventarioEditado.amplificador; let i = index" class="row">
+        <div
+          *ngFor="let a of inventarioEditado.amplificador; let i = index"
+          class="row"
+        >
           <div class="input-field col s4">
-            <input type="text" name="serial{{i}}" [(ngModel)]="a.serial" placeholder="Serial">
+            <input
+              type="text"
+              name="serial{{ i }}"
+              [(ngModel)]="a.serial"
+              placeholder="Serial"
+            />
           </div>
         </div>
       </div>
@@ -141,15 +245,20 @@
       <!-- Parlantes -->
       <div *ngIf="inventarioEditado.parlante?.length">
         <h6 class="indigo-text">🎛 Amplificadores</h6>
-        <div *ngFor="let par of inventarioEditado.parlante; let i = index" class="row">
+        <div
+          *ngFor="let par of inventarioEditado.parlante; let i = index"
+          class="row"
+        >
           <div class="input-field col s4">
-            <input type="text" name="serial{{i}}" [(ngModel)]="par.serial" placeholder="Serial">
+            <input
+              type="text"
+              name="serial{{ i }}"
+              [(ngModel)]="par.serial"
+              placeholder="Serial"
+            />
           </div>
         </div>
       </div>
-
-
-      
     </div>
 
     <div class="modal-footer">
@@ -161,7 +270,11 @@
   </div>
 
   <!-- Lista de Inventarios -->
-  <div *ngFor="let inv of ingresosRegistrados; let i = index" class="card z-depth-2" style="margin-bottom: 30px;">
+  <div
+    *ngFor="let inv of ingresosRegistrados; let i = index"
+    class="card z-depth-2"
+    style="margin-bottom: 30px"
+  >
     <div class="card-content">
       <span class="card-title blue-text text-darken-3">
         Inventario #{{ i + 1 }}
@@ -200,7 +313,7 @@
         </div>
       </div>
 
-            <!-- Encuestadores -->
+      <!-- Encuestadores -->
       <div *ngIf="inv.encuestador?.length" class="section">
         <h6 class="indigo-text text-darken-2">Selector de encuestas</h6>
         <div class="responsive-table">
@@ -314,20 +427,29 @@
       </div>
     </div>
 
-    <div class="card-action center-align">
-      <a class="btn-small blue lighten-1 waves-effect waves-light modal-trigger"
-         data-target="modalEditar"
-          (click)="abrirModalEditar(inv)">
-        <i class="material-icons left">edit</i>Editar
-      </a>
-      <a class="btn-small red lighten-1 waves-effect waves-light" (click)="eliminarInventario(inv._id)">
-        <i class="material-icons left" >delete</i>Eliminar
-      </a>
-    </div>
+
+      <div class="center-align">
+        <a
+          class="btn-small blue lighten-1 waves-effect waves-light modal-trigger"
+          data-target="modalEditar"
+          (click)="abrirModalEditar(inv)"
+        >
+          <i class="material-icons left">edit</i>Editar
+        </a>
+        <a
+          class="btn-small red lighten-1 waves-effect waves-light"
+          (click)="eliminarInventario(inv._id)"
+        >
+          <i class="material-icons left">delete</i>Eliminar
+        </a>
+      </div>
   </div>
 
-  <div class="center-align" style="margin-top: 30px;">
-    <a class="btn orange lighten-1 waves-effect waves-light" [routerLink]="['/inventario']">
+  <div class="center-align" style="margin-top: 30px">
+    <a
+      class="btn orange lighten-1 waves-effect waves-light"
+      [routerLink]="['/inventario']"
+    >
       <i class="material-icons left">arrow_back</i>Volver al formulario
     </a>
   </div>
