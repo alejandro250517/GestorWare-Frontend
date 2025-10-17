@@ -38,7 +38,7 @@
     class="card-panel yellow lighten-4"
   >
     <span class="black-text">Cargando registros</span>
-  </div>
+  </div> 
 
   <!-- Modal de Edición -->
   <div id="modalEditar" class="modal">
@@ -71,7 +71,7 @@
           *ngFor="let s of inventarioEditado.selector; let i = index"
           class="row"
         >
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="serial{{ i }}"
@@ -79,7 +79,7 @@
               placeholder="Serial"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="selectorMac{{ i }}"
@@ -87,7 +87,7 @@
               placeholder="MAC"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="selectorIp{{ i }}"
@@ -105,7 +105,7 @@
           *ngFor="let e of inventarioEditado.encuestador; let i = index"
           class="row"
         >
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="serial{{ i }}"
@@ -113,7 +113,7 @@
               placeholder="Serial"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="encuestadorMac{{ i }}"
@@ -121,7 +121,7 @@
               placeholder="MAC"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="encuestadorIp{{ i }}"
@@ -139,7 +139,7 @@
           *ngFor="let p of inventarioEditado.player; let i = index"
           class="row"
         >
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="serial{{ i }}"
@@ -147,7 +147,7 @@
               placeholder="Serial"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="mac{{ i }}"
@@ -155,7 +155,7 @@
               placeholder="MAC"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="ip{{ i }}"
@@ -163,7 +163,7 @@
               placeholder="IP"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="marca{{ i }}"
@@ -171,7 +171,7 @@
               placeholder="Marca"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="modelo{{ i }}"
@@ -179,7 +179,7 @@
               placeholder="Modelo"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="sistemaOperativo{{ i }}"
@@ -197,7 +197,7 @@
           *ngFor="let pan of inventarioEditado.pantalla; let i = index"
           class="row"
         >
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="marca{{ i }}"
@@ -205,7 +205,7 @@
               placeholder="Marca"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="serial{{ i }}"
@@ -213,7 +213,7 @@
               placeholder="Serial"
             />
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="tamano{{ i }}"
@@ -231,7 +231,7 @@
           *ngFor="let a of inventarioEditado.amplificador; let i = index"
           class="row"
         >
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="serial{{ i }}"
@@ -244,12 +244,12 @@
 
       <!-- Parlantes -->
       <div *ngIf="inventarioEditado.parlante?.length">
-        <h6 class="indigo-text">🎛 Amplificadores</h6>
+        <h6 class="indigo-text">🎛 Parlantes</h6>
         <div
           *ngFor="let par of inventarioEditado.parlante; let i = index"
           class="row"
         >
-          <div class="input-field col s4">
+          <div class="input-field col s12 m6 l4">
             <input
               type="text"
               name="serial{{ i }}"
@@ -392,7 +392,7 @@
       <div *ngIf="inv.amplificador?.length" class="section">
         <h6 class="indigo-text text-darken-2">Amplificadores</h6>
         <div class="responsive-table striped">
-          <table>
+          <table class="responsive-table">
             <thead>
               <tr>
                 <th>Serial</th>
@@ -411,7 +411,7 @@
       <div *ngIf="inv.parlante?.length" class="section">
         <h6 class="indigo-text text-darken-2">Parlantes</h6>
         <div class="responsive-table striped">
-          <table>
+          <table class="responsive-table">
             <thead>
               <tr>
                 <th>Serial</th>
@@ -428,8 +428,8 @@
     </div>
 
 
-      <div class="center-align">
-        <a
+      <div class="center-align" >
+          <a
           class="btn-small blue lighten-1 waves-effect waves-light modal-trigger"
           data-target="modalEditar"
           (click)="abrirModalEditar(inv)"
