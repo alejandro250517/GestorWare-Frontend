@@ -47,6 +47,13 @@ thead{
   margin: 20px;
 }
 
+.modal-footer{
+  display: flex;
+  justify-content: space-between;
+
+}
+
+
 
 
 
